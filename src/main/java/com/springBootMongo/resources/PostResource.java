@@ -16,14 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.springBootMongo.domain.Post;
 import com.springBootMongo.domain.User;
 import com.springBootMongo.dto.UserDTO;
 import com.springBootMongo.services.UserService;
 
 @RestController
-@RequestMapping(value = "/users")
-public class UserResource {
+@RequestMapping(value = "/posts")
+public class PostResource {
 	
 	@Autowired
 	UserService service;
@@ -61,12 +60,6 @@ public class UserResource {
 		obj.setId(id);
 		obj = service.Update(obj);
 		return ResponseEntity.noContent().build();
-	}
-	
-	@GetMapping(value = "/{id}/posts")
-	public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
-		User obj = service.findById(id);
-		return ResponseEntity.ok().body(obj.getPosts());
 	}
 	
 }
